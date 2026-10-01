@@ -1,6 +1,8 @@
 name: Quant Engine — Hourly Paper Trader
 
 on:
+  push:
+    branches: [ master, main ]
   schedule:
     # Ogni ora, dalle 09:00 alle 22:00 UTC (11:00-00:00 ora italiana)
     # Lunedì-Venerdì (mercati aperti) + weekend per crypto
