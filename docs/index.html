@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="refresh" content="3600">
+<title>Dip-Buy Paper Trading | Multi-Asset</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap');
+:root{--bg:#0f172a;--card:#1e293b;--border:#334155;--text:#f8fafc;--muted:#94a3b8;--green:#10b981;--red:#ef4444;--blue:#3b82f6;--purple:#8b5cf6;}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;padding:28px}
+.container{max-width:1200px;margin:0 auto}
+header{margin-bottom:28px}
+h1{font-size:1.8rem;font-weight:800;background:linear-gradient(135deg,#3b82f6,#8b5cf6,#10b981);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.sub{color:var(--muted);font-size:.9rem;margin-top:5px}
+.kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin-bottom:24px}
+.kpi{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:18px}
+.kpi-label{color:var(--muted);font-size:.75rem;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px}
+.kpi-val{font-size:1.5rem;font-weight:700}
+.green{color:var(--green)}.red{color:var(--red)}.blue{color:var(--blue)}.purple{color:var(--purple)}
+.asset-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;margin-bottom:24px}
+.chart-box{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin-bottom:24px}
+.chart-title{color:var(--muted);font-size:.8rem;text-transform:uppercase;letter-spacing:.5px;margin-bottom:14px}
+.table-box{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px}
+table{width:100%;border-collapse:collapse}
+th,td{padding:11px 14px;text-align:left;border-bottom:1px solid var(--border);font-size:.85rem}
+th{color:var(--muted);font-size:.75rem;text-transform:uppercase;letter-spacing:.3px}
+tr:hover{background:#1a2744}
+.footer{text-align:center;color:var(--muted);font-size:.75rem;margin-top:24px}
+</style>
+</head>
+<body>
+<div class="container">
+<header>
+<h1>Multi-Asset Dip-Buy Paper Trader</h1>
+<div class="sub">NVDA &middot; QQQ &middot; AAPL &middot; GLD &nbsp;|&nbsp; Long-Only &middot; Target +5% &middot; Stop -2.5% &nbsp;|&nbsp; $5,000 Prop Firm</div>
+</header>
+
+<div class="kpi-grid">
+<div class="kpi"><div class="kpi-label">Capitale Iniziale</div><div class="kpi-val blue">$5,000.00</div></div>
+<div class="kpi"><div class="kpi-label">Equity Totale</div><div class="kpi-val red">$4,999.45</div></div>
+<div class="kpi"><div class="kpi-label">PnL dal 1 Ott</div><div class="kpi-val red">-0.55 (-0.01%)</div></div>
+<div class="kpi"><div class="kpi-label">Trade Totali</div><div class="kpi-val purple">1</div></div>
+<div class="kpi"><div class="kpi-label">Win Rate</div><div class="kpi-val red">0.0%</div></div>
+<div class="kpi"><div class="kpi-label">Avg Win / Loss</div><div class="kpi-val">$+0 / $0</div></div>
+</div>
+
+<div class="asset-grid">
+        <div style="background:#1e293b;border:1px solid #334155;border-radius:12px;padding:18px;">
+            <div style="display:flex;justify-content:space-between;align-items:center;">
+                <div style="font-weight:700;font-size:1.1rem">NVDA</div>
+                <div style="font-size:.8rem;color:#10b981;font-weight:700">+0.0%</div>
+            </div>
+            <div style="color:#94a3b8;font-size:.8rem;margin-top:2px">NVIDIA Corp.</div>
+            <div style="margin-top:8px;font-size:.9rem">
+                <span style="color:#94a3b8">Equity: </span><b style="color:#f8fafc">$1,250.00</b>
+                &nbsp;&nbsp;<span style="color:#94a3b8">Prezzo: </span><b style="color:#38bdf8">$232.17</b>
+            </div>
+            <div style="margin-top:10px;color:#64748b;font-size:12px;">FLAT — In attesa di segnale dip</div>
+        </div>
+        <div style="background:#1e293b;border:1px solid #334155;border-radius:12px;padding:18px;">
+            <div style="display:flex;justify-content:space-between;align-items:center;">
+                <div style="font-weight:700;font-size:1.1rem">QQQ</div>
+                <div style="font-size:.8rem;color:#10b981;font-weight:700">+0.0%</div>
+            </div>
+            <div style="color:#94a3b8;font-size:.8rem;margin-top:2px">Nasdaq 100 ETF</div>
+            <div style="margin-top:8px;font-size:.9rem">
+                <span style="color:#94a3b8">Equity: </span><b style="color:#f8fafc">$1,250.00</b>
+                &nbsp;&nbsp;<span style="color:#94a3b8">Prezzo: </span><b style="color:#38bdf8">$743.14</b>
+            </div>
+            <div style="margin-top:10px;color:#64748b;font-size:12px;">FLAT — In attesa di segnale dip</div>
+        </div>
+        <div style="background:#1e293b;border:1px solid #334155;border-radius:12px;padding:18px;">
+            <div style="display:flex;justify-content:space-between;align-items:center;">
+                <div style="font-weight:700;font-size:1.1rem">AAPL</div>
+                <div style="font-size:.8rem;color:#ef4444;font-weight:700">-0.0%</div>
+            </div>
+            <div style="color:#94a3b8;font-size:.8rem;margin-top:2px">Apple Inc.</div>
+            <div style="margin-top:8px;font-size:.9rem">
+                <span style="color:#94a3b8">Equity: </span><b style="color:#f8fafc">$1,249.45</b>
+                &nbsp;&nbsp;<span style="color:#94a3b8">Prezzo: </span><b style="color:#38bdf8">$329.72</b>
+            </div>
+            
+                <div style="margin-top:10px;padding:10px;background:#0f2a1f;border-radius:8px;font-size:12px;">
+                    <div style="color:#a7f3d0;font-weight:600">LONG APERTO</div>
+                    <div style="color:#94a3b8;margin-top:4px">Entry: <b style="color:#f8fafc">$329.77</b></div>
+                    <div style="color:#94a3b8">Target: <b style="color:#10b981">$346.25</b> &nbsp; Stop: <b style="color:#ef4444">$321.52</b></div>
+                    <div style="color:#ef4444;font-weight:700;margin-top:4px">PnL: $-0.17 (-0.01%)</div>
+                </div>
+        </div>
+        <div style="background:#1e293b;border:1px solid #334155;border-radius:12px;padding:18px;">
+            <div style="display:flex;justify-content:space-between;align-items:center;">
+                <div style="font-weight:700;font-size:1.1rem">GLD</div>
+                <div style="font-size:.8rem;color:#10b981;font-weight:700">+0.0%</div>
+            </div>
+            <div style="color:#94a3b8;font-size:.8rem;margin-top:2px">Oro ETF</div>
+            <div style="margin-top:8px;font-size:.9rem">
+                <span style="color:#94a3b8">Equity: </span><b style="color:#f8fafc">$1,250.00</b>
+                &nbsp;&nbsp;<span style="color:#94a3b8">Prezzo: </span><b style="color:#38bdf8">$382.77</b>
+            </div>
+            <div style="margin-top:10px;color:#64748b;font-size:12px;">FLAT — In attesa di segnale dip</div>
+        </div></div>
+
+<div class="chart-box">
+<div class="chart-title">Equity Curve</div>
+<canvas id="eqChart" height="80"></canvas>
+</div>
+
+<div class="table-box">
+<div class="chart-title" style="margin-bottom:14px">Registro Operazioni</div>
+<div style="overflow-x:auto">
+<table>
+<thead><tr><th>Ora</th><th>Azione</th><th>Asset</th><th>Prezzo</th><th>PnL</th><th>Equity</th></tr></thead>
+<tbody><tr><td>2026-10-01 20:52:35</td><td><b style="color:#3b82f6">AAPL</b></td><td style="font-weight:600"></td><td>$0.00</td><td style="color:#94a3b8">$+nan</td><td>$nan</td></tr></tbody>
+</table>
+</div>
+</div>
+
+<div class="footer">Aggiornato: 2026-10-01 20:52:36 &nbsp;|&nbsp; Long-Only Dip Buy Engine v3.0</div>
+</div>
+<script>
+new Chart(document.getElementById('eqChart'),{
+    type:'line',
+    data:{
+        labels:["2026-10-01 20:52:35"],
+        datasets:[{
+            label:'Equity ($)',
+            data:[NaN],
+            borderColor:'#3b82f6',
+            backgroundColor:'rgba(59,130,246,0.07)',
+            fill:true,tension:0.4,borderWidth:2,pointRadius:3,pointBackgroundColor:'#3b82f6'
+        },{
+            label:'Capitale Iniziale',
+            data:Array(1).fill(5000),
+            borderColor:'rgba(100,116,139,0.5)',
+            borderDash:[6,4],borderWidth:1.5,pointRadius:0,fill:false
+        }]
+    },
+    options:{
+        responsive:true,
+        plugins:{legend:{labels:{color:'#94a3b8',font:{size:12}}}},
+        scales:{
+            x:{grid:{color:'#1e293b'},ticks:{color:'#64748b',maxTicksLimit:10}},
+            y:{grid:{color:'#1e293b'},ticks:{color:'#64748b',callback:v=>'$'+v.toLocaleString()}}
+        }
+    }
+});
+</script>
+</body>
+</html>

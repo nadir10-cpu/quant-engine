@@ -1,0 +1,14 @@
+# Git ignore per il progetto quant_engine
+__pycache__/
+*.py[cod]
+*.pyo
+*.egg-info/
+.env
+.venv/
+venv/
+*.log
+
+# Non escludere questi file (servono a GitHub Actions)
+!quant_engine/state.json
+!quant_engine/reports/paper_trades.csv
+!quant_engine/reports/dashboard.html

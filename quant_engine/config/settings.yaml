@@ -1,0 +1,32 @@
+# quant_engine/config/settings.yaml
+# Configurazione Parametri High-Yield Aggressivi per Massimizzazione dei Rendimenti
+
+engine:
+  name: "Institutional Quantitative Trading - High Yield Aggressive Engine"
+  version: "1.1.0-HY"
+  base_currency: "USD"
+  initial_capital: 5000.0 # Conto base Prop Firm $5,000
+
+risk_management:
+  target_portfolio_volatility: 0.35 # Target di volatilita alto (35% annuo)
+  max_daily_drawdown: 0.08          # Max perdita giornaliera tollerata 8%
+  max_total_drawdown: 0.20          # Max Drawdown totale tollerato 20%
+  half_kelly_multiplier: 0.80       # Aggressive Kelly (80% del Full-Kelly)
+  max_single_position_risk: 0.05    # Risk fino al 5% del capitale a trade
+  max_leverage: 3.5                 # Leva fino a 3.5x
+
+strategy_parameters:
+  stat_arb:
+    entry_zscore: 1.4               # Ingresso piu frequente (1.4 deviazioni standard)
+    exit_zscore: 0.2                # Uscita rapida a convergenza (0.2 sigma)
+    stop_loss_zscore: 3.2           # Stop loss dinamico su divergenza
+    lookback_window: 30             # Finestra mobile rapida (30 ore)
+  quantum_price_levels:
+    mu: 1.0
+    lambda_param: 0.15
+    grid_points: 250
+    n_levels: 5
+
+execution:
+  slippage_bps: 1.5
+  commission_bps: 2.0

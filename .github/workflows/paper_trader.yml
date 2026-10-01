@@ -1,0 +1,60 @@
+name: Quant Engine — Hourly Paper Trader
+
+on:
+  schedule:
+    # Ogni ora, dalle 09:00 alle 22:00 UTC (11:00-00:00 ora italiana)
+    # Lunedì-Venerdì (mercati aperti) + weekend per crypto
+    - cron: '0 9-22 * * 1-5'   # Lun-Ven ogni ora 09-22 UTC
+    - cron: '0 10,14,18,22 * * 6,0'  # Sab-Dom 4 check per crypto
+  workflow_dispatch:            # Esecuzione manuale dal sito GitHub
+
+jobs:
+  run-paper-trader:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write           # Permesso per fare commit del state.json aggiornato
+
+    steps:
+      # 1. Scarica il codice dal repo
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 1
+
+      # 2. Configura Python
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      # 3. Installa dipendenze
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      # 4. Esegui il paper trader
+      - name: Run Hourly Paper Trader
+        run: python quant_engine/run_hourly_paper_trader.py
+        env:
+          PYTHONPATH: ${{ github.workspace }}
+
+      # 5. Copia la dashboard in docs/ per GitHub Pages
+      - name: Prepare GitHub Pages dashboard
+        run: |
+          mkdir -p docs
+          cp quant_engine/reports/dashboard.html docs/index.html
+          echo "Dashboard aggiornata: $(date)" > docs/last_update.txt
+
+      # 6. Commit e push di state.json + dashboard aggiornati
+      - name: Commit updated state and dashboard
+        run: |
+          git config user.name  "QuantBot"
+          git config user.email "quantbot@noreply.github.com"
+          git add quant_engine/state.json
+          git add quant_engine/reports/paper_trades.csv
+          git add docs/index.html
+          git add docs/last_update.txt
+          # Committi solo se ci sono modifiche
+          git diff --staged --quiet || git commit -m "bot: hourly update $(date +'%Y-%m-%d %H:%M UTC')"
+          git push

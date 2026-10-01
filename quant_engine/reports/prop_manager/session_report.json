@@ -1,0 +1,40 @@
+{
+  "session_start": "2026-09-30 18:49:23",
+  "session_end": "2026-09-30 18:49:28",
+  "total_cycles": 8,
+  "accounts": [
+    {
+      "account_id": "FP_5k_A",
+      "firm_preset": "FundingPips_5k",
+      "initial_capital": 5000.0,
+      "final_equity": 5025.145206275567,
+      "total_pnl": 25.15,
+      "payout_earned": 20.12,
+      "trade_count": 9,
+      "status": "ACTIVE",
+      "progress_pct": 6.3
+    },
+    {
+      "account_id": "FP_10k_A",
+      "firm_preset": "FundingPips_10k",
+      "initial_capital": 10000.0,
+      "final_equity": 10050.290412551134,
+      "total_pnl": 50.29,
+      "payout_earned": 40.23,
+      "trade_count": 9,
+      "status": "ACTIVE",
+      "progress_pct": 6.3
+    },
+    {
+      "account_id": "FN_Stellar_A",
+      "firm_preset": "FundedNext_Stellar_15k",
+      "initial_capital": 15000.0,
+      "final_equity": 15075.4356188267,
+      "total_pnl": 75.44,
+      "payout_earned": 67.89,
+      "trade_count": 9,
+      "status": "ACTIVE",
+      "progress_pct": 5.0
+    }
+  ]
+}
