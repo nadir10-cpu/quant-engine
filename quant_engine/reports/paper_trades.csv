@@ -1,2 +1,3 @@
 timestamp,action,ticker_y,price_y,units_y,ticker_x,price_x,units_x,pnl_usd,total_equity
 2026-10-01 20:52:35,AAPL,OPEN_LONG,329.7661,3.790565,0.0,-0.38
+2026-10-09 21:34:06,NVDA,OPEN_LONG,229.28,5.451849,0.0,-0.38

@@ -1,13 +1,13 @@
 {
     "initial_capital": 5000.0,
-    "last_updated": "2026-10-09 17:19:43",
+    "last_updated": "2026-10-09 21:34:07",
     "positions": {
         "NVDA": {
-            "capital": 1250.0,
-            "units": 0.0,
-            "entry_price": 0.0,
-            "position": 0,
-            "entry_time": null
+            "capital": -0.375,
+            "units": 5.451849296297494,
+            "entry_price": 229.27999877929688,
+            "position": 1,
+            "entry_time": "2026-10-09 21:34:06"
         },
         "QQQ": {
             "capital": 1250.0,
